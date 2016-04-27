@@ -20,6 +20,10 @@ Against an entitled binary to bypass SIP:
 
 for i in `seq 0 1000000`; do ./mach_race_client /System/Library/PrivateFrameworks/PackageKit.framework/Versions/A/Resources/system_shove; done
 
+Note: because the service name is not modified you can't chain this exploit from user to root and then use it to bypass SIP since bootstrap_register2 will fail the second time (service is already registered with launchd from the first run). The solution is to add a parameter to use a different service name for example.
+
+Note2: there's no need to make this into two separate apps, a single binary works, you just need to fork a server and client.
+
 ----------
 
 References:
